@@ -54,8 +54,8 @@
         }
         .lang-btn:hover {
             background-color: #ffffff;
-            color: #01040a; /* 滑鼠移過去字變深色，背景變純白 */
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* 加上純白光暈 */
+            color: #01040a; 
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); 
         }
 
         /* 頂部導覽列 (Navbar) */
@@ -139,8 +139,8 @@
             display: none; 
         }
         .nav-links a.nav-cta {
-            background-color: rgba(255, 255, 255, 0.1); /* 預設微透明白底 */
-            color: #ffffff !important; /* 預設純白文字 */
+            background-color: rgba(255, 255, 255, 0.1); 
+            color: #ffffff !important; 
             border: 1px solid #ffffff;
             border-radius: 20px; 
             padding: 8px 20px !important; 
@@ -148,9 +148,9 @@
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; 
         }
         .nav-links a.nav-cta:hover {
-            background-color: #ffffff; /* 滑鼠移過背景變純白 */
-            color: #01040a !important; /* 文字變深藍色高對比 */
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.9); /* 超強純白爆閃光暈 */
+            background-color: #ffffff; 
+            color: #01040a !important; 
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.9); 
             transform: translateY(-3px); 
             text-shadow: none;
         }
@@ -215,7 +215,7 @@
             z-index: 1; 
         }
 
-        /* --- 左側半圓形 HUD 容器 (加上鎖定狀態邏輯) --- */
+        /* --- 左側半圓形 HUD 容器 --- */
         .arc-container {
             position: absolute;
             left: 0; 
@@ -228,7 +228,6 @@
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         }
 
-        /* Hover 和 JS鎖定時 都維持放大狀態 */
         .arc-container:hover, .arc-container.locked {
             transform: translateY(-50%) scale(1.4); 
         }
@@ -301,7 +300,7 @@
             pointer-events: auto; 
         }
 
-        /* === 姐姐特製：不卡頓的全息 3D 面板 (極致滑順彈出版) === */
+        /* === 全息 3D 面板 === */
         .holo-panel {
             position: fixed;
             left: 280px; 
@@ -331,13 +330,11 @@
             --poster-color: transparent;
         }
 
-        /* 狀態一：滑鼠經過，小預覽模式 */
         .holo-panel.preview-mode {
             opacity: 1;
             transform: translateY(-50%) scale(1);
         }
 
-        /* 狀態二：中央巨大化模式 */
         .holo-panel.center-mode {
             left: 50%; 
             top: 50%;
@@ -358,7 +355,6 @@
             100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
-        /* 關閉按鈕 */
         .close-holo-btn {
             position: absolute;
             top: 20px;
@@ -389,7 +385,6 @@
             transform: rotate(90deg);
         }
 
-        /* 底部提示文字 */
         .holo-hint {
             position: absolute;
             bottom: 0;
@@ -472,7 +467,6 @@
             box-shadow: 0 -15px 30px rgba(0,0,0,0.8); 
         }
 
-        /* 內容區塊共用設定 */
         .section {
             padding: 40px 10% 80px;
         }
@@ -494,7 +488,6 @@
             margin: 15px auto 0;
         }
 
-        /* 卡片式最新消息區塊 */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -565,7 +558,6 @@
             color: #66fcf1;
         }
 
-        /* 3D 堆疊輪播圖樣式 */
         .carousel-container {
             position: relative;
             max-width: 1000px;
@@ -594,7 +586,6 @@
             border-radius: 15px;
             border: 2px solid rgba(255, 255, 255, 0.2); 
         }
-
         .carousel-dots {
             position: absolute;
             bottom: 10px;
@@ -616,7 +607,6 @@
             box-shadow: 0 0 10px #ffffff;
         }
 
-        /* 紀錄片影片區塊樣式 */
         .video-wrapper {
             max-width: 900px;
             margin: 0 auto;
@@ -640,7 +630,6 @@
             border: 0;
         }
 
-        /* 合作夥伴區塊 */
         .sponsors-frame {
             background-color: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.08); 
@@ -666,8 +655,6 @@
         .sponsor-item:hover {
             transform: scale(1.08);
         }
-        
-        /* === 姐姐的高級視覺魔法：贊助商 Logo (亮度已調高至200%) === */
         .sponsor-item img {
             max-width: 100%;
             height: auto;
@@ -682,7 +669,6 @@
             opacity: 1;
         }
 
-        /* 頁尾 */
         .footer {
             background-color: #01040a;
             padding: 40px 10%;
@@ -701,7 +687,7 @@
         .footer-social a:hover {
             color: #ffffff;
         }
-        /* === 姐姐特製：高質感聯絡資訊區塊 === */
+
         .footer-info {
             color: #8892b0;
             font-size: 0.95rem;
@@ -721,11 +707,9 @@
         .footer-info p:hover {
             color: #ffffff;
         }
+
         /* === 姐姐的極致龜毛客製化：還原官方漸層圖標 === */
-        
-        /* 1. 針對 Maps 地標 (還原 image_a1a36b.png 的色彩分佈) */
         .footer-info i.fa-location-dot {
-            /* 左上紅 -> 右上/右邊藍 -> 下方綠 -> 左下黃 */
             background: linear-gradient(135deg, #ea4335 10%, #4285f4 45%, #34a853 80%, #fbbc05 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -735,10 +719,7 @@
             font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
-
-        /* 2. 針對 Gmail 信封 (還原 image_a1a6d0.png 的色彩分佈) */
         .footer-info i.fa-envelope {
-            /* 左邊大面積紅 -> 中間偏上黃 -> 右邊綠 -> 右下角藍 */
             background: linear-gradient(115deg, #ea4335 30%, #fbbc05 55%, #34a853 80%, #4285f4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -748,8 +729,6 @@
             font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
-        
-        /* 滑鼠經過時的俏皮小動畫不變 */
         .footer-info p:hover i.fa-location-dot,
         .footer-info p:hover i.fa-envelope {
             transform: scale(1.15) rotate(-5deg);
@@ -766,23 +745,18 @@
             font-size: 0.85rem;
         }
 
-        /* 手機版適應 */
         @media (max-width: 768px) {
             .navbar { padding: 15px 20px; }
             .nav-links { display: none; } 
-
             .hero-logo img { height: 80px; }
             .hero h1 { font-size: 2.2rem; }
             .hero p { font-size: 1rem; }
-
             .arc-container { display: none; }
-
             .section { padding: 50px 20px; }
             .carousel-container { height: 320px; }
             .carousel-item { height: 250px; width: 75%; }
             .sponsor-item { flex: 0 1 90px; } 
             .sponsor-item img { max-height: 26px; }
-            
             .holo-panel.center-mode { width: 95vw; height: 60vh; left: 50%; }
         }
     </style>
@@ -811,20 +785,16 @@
                 <span class="lang-zh-txt">合作夥伴</span>
                 <span class="lang-en-txt">Sponsors</span>
             </a>
-            <!-- 姐姐特製招募按鈕 -->
             <a href="你的報名表單網址"  class="nav-cta">
                 <span class="lang-zh-txt">招募資訊</span>
                 <span class="lang-en-txt">Join Us</span>
             </a>
-            
             <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">🌐 EN</button>
         </div>
     </nav>
 
-    <!-- 引入 Vimeo API -->
     <script src="https://player.vimeo.com/api/player.js"></script>
 
-    <!-- 背景影片區塊 -->
     <div class="fixed-bg">
         <div class="video-curtain" id="videoCurtain"></div>
         <iframe id="vimeo-bg-player" class="hero-bg-youtube" 
@@ -839,16 +809,12 @@
     <header class="hero">
         <div class="arc-container" id="arcContainer">
             <div class="arc-line"></div>
-            <div class="arc-item" style="--angle: -50deg;">
+            <!-- 姐姐幫你砍成兩個按鈕，角度完美分配：-25度 與 25度！並且加入 holo-trigger 類別 -->
+            <div class="arc-item holo-trigger" style="--angle: -25deg;">
                 <span class="lang-zh-txt">機電整合</span>
                 <span class="lang-en-txt">Mechatronics</span>
             </div>
-            <div class="arc-item" style="--angle: 0deg;">
-                <span class="lang-zh-txt">軟體開發</span>
-                <span class="lang-en-txt">Software</span>
-            </div>
-            
-            <div class="arc-item" id="mechBtn" style="--angle: 50deg;">
+            <div class="arc-item holo-trigger" style="--angle: 25deg;">
                 <span class="lang-zh-txt">機構設計</span>
                 <span class="lang-en-txt">Mechanism</span>
             </div>
@@ -870,7 +836,6 @@
             <span class="lang-en-txt">Explore More</span>
         </a>
 
-        <!-- 姐姐特製：被拉到外層的 3D 面板與全螢幕暗屏遮罩 -->
         <div class="screen-overlay" id="screenOverlay"></div>
         <div class="holo-panel" id="holoPanel">
             <button class="close-holo-btn" id="closeHoloBtn"><i class="fa-solid fa-xmark"></i></button>
@@ -884,7 +849,7 @@
                 max-camera-orbit="auto auto 300%"
                 min-camera-orbit="auto auto 20%">
             </model-viewer>
-            <div class="holo-hint" id="holoHint">點擊【機構設計】啟用滑鼠旋轉</div>
+            <div class="holo-hint" id="holoHint">點擊左側選單啟用滑鼠旋轉</div>
         </div>
     </header>
 
@@ -990,16 +955,13 @@
                 <span class="lang-en-txt">Partners & Sponsors</span>
             </h2>
             <div class="sponsors-frame">
-                <!-- 姐姐幫你建好 14 個格子了，自己把 # 跟網址換掉！ -->
                 <div class="sponsor-grid">
-                    <!-- 1 ~ 5 (原本的) -->
                     <a href="https://ccet.nkust.edu.tw/" target="_blank" class="sponsor-item"><img src="https://raw.githubusercontent.com/SnowBearTTS/NRT/7a962029d04b4e5f9dff12e0b80cfe3a72120af5/images/CCET.png" alt="高瞻科技不分系"></a>
                     <a href="https://www.dragon-geosciences.com/zh-tw/" target="_blank" class="sponsor-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/%E9%BE%8D%E9%8A%93logo.png?raw=true" alt="龍銓集團"></a>
                     <a href="https://www.brightfuture.com.tw/" target="_blank" class="sponsor-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/%E6%B0%B8%E4%BA%AElogo.png?raw=true" alt="永亮股份有限公司"></a>
                     <a href="https://marine.nkust.edu.tw/" target="_blank" class="sponsor-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/%E6%B5%B7%E7%A7%91%E8%99%95logo.png?raw=true" alt="海洋科技發展處"></a>
                     <a href="https://yuanfangguojiyouxiangongsi-chuanbowujingongyingshang.webnode.tw/" target="_blank" class="sponsor-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/%E6%BA%90%E8%88%ABlogo.png?raw=true" alt="源舫"></a>
                     
-                    <!-- 6 ~ 14 (姐姐幫你留好的佔位符，記得把 src 跟 href 換成真的！) -->
                     <a href="#" target="_blank" class="sponsor-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TORI%20logo.png?raw=true" alt="贊助商 6"></a>
                     <a href="#" target="_blank" class="sponsor-item"><img src="https://placehold.co/150x50/333/FFF?text=Sponsor+7" alt="贊助商 7"></a>
                     <a href="#" target="_blank" class="sponsor-item"><img src="https://placehold.co/150x50/333/FFF?text=Sponsor+8" alt="贊助商 8"></a>
@@ -1132,14 +1094,15 @@
 
             const btn = document.getElementById('langToggleBtn');
             if (document.body.classList.contains('english-mode')) {
-                btn.innerHTML = '🌐 EN';
-            } else {
                 btn.innerHTML = '🌐 中文';
+            } else {
+                btn.innerHTML = '🌐 EN';
             }
         }
 
-        // === 姐姐的終極 3D 面板鎖定與放大控制魔法 ===
-        const mechBtn = document.getElementById('mechBtn');
+        // === 姐姐的終極 3D 面板鎖定與雙按鈕聯動魔法 ===
+        // 現在我們抓取所有掛有 holo-trigger 類別的按鈕
+        const holoTriggers = document.querySelectorAll('.holo-trigger');
         const holoPanel = document.getElementById('holoPanel');
         const rovModelElement = document.getElementById('rovModel'); 
         const holoHint = document.getElementById('holoHint');
@@ -1149,31 +1112,36 @@
 
         let isHoloLocked = false;
 
-        if(mechBtn && holoPanel) {
+        if(holoTriggers.length > 0 && holoPanel) {
             
-            mechBtn.addEventListener('mouseenter', function() {
-                if (!isHoloLocked) holoPanel.classList.add('preview-mode');
-            });
-            mechBtn.addEventListener('mouseleave', function() {
-                if (!isHoloLocked) holoPanel.classList.remove('preview-mode');
-            });
+            holoTriggers.forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    if (!isHoloLocked) holoPanel.classList.add('preview-mode');
+                });
+                btn.addEventListener('mouseleave', function() {
+                    if (!isHoloLocked) holoPanel.classList.remove('preview-mode');
+                });
 
-            mechBtn.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                if (isHoloLocked) return; 
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault(); 
+                    if (isHoloLocked) return; 
 
-                isHoloLocked = true;
-                document.body.style.overflow = 'hidden'; 
-                
-                arcContainer.classList.add('locked'); 
-                mechBtn.classList.add('active-lock'); 
-                
-                holoPanel.classList.remove('preview-mode'); 
-                holoPanel.classList.add('center-mode'); 
-                screenOverlay.classList.add('active'); 
+                    isHoloLocked = true;
+                    document.body.style.overflow = 'hidden'; 
+                    
+                    arcContainer.classList.add('locked'); 
+                    btn.classList.add('active-lock'); 
+                    
+                    holoPanel.classList.remove('preview-mode'); 
+                    holoPanel.classList.add('center-mode'); 
+                    screenOverlay.classList.add('active'); 
 
-                rovModelElement.setAttribute('camera-controls', 'true');
-                holoHint.innerText = "✅ 手動旋轉已啟用 (可拖曳/滑鼠滾輪縮放)";
+                    rovModelElement.setAttribute('camera-controls', 'true');
+                    
+                    // 動態抓取按鈕上的中文名字，顯示在底下的提示文字裡
+                    const btnName = btn.querySelector('.lang-zh-txt').innerText;
+                    holoHint.innerText = `✅ 【${btnName}】模組已載入 (可拖曳/滑鼠滾輪縮放)`;
+                });
             });
 
             function closeHoloModal() {
@@ -1181,7 +1149,9 @@
                 document.body.style.overflow = ''; 
                 
                 arcContainer.classList.remove('locked');
-                mechBtn.classList.remove('active-lock');
+                
+                // 把所有按鈕的發光狀態都解除
+                holoTriggers.forEach(b => b.classList.remove('active-lock'));
                 
                 holoPanel.classList.remove('center-mode');
                 screenOverlay.classList.remove('active');
@@ -1205,7 +1175,7 @@
                 }
                 // ===================================
 
-                holoHint.innerText = "點擊【機構設計】啟用滑鼠旋轉";
+                holoHint.innerText = "點擊左側選單啟用滑鼠旋轉";
             }
 
             closeHoloBtn.addEventListener('click', closeHoloModal);
