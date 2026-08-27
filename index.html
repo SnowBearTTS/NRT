@@ -6,22 +6,19 @@
     <title>NKUST ROV TEAM | 官方網站</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 姐姐加的魔法：讓瀏覽器看得懂 3D 模型的引擎 -->
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
     <style>
-        /* 平滑捲動 */
         html {
             scroll-behavior: smooth; 
             scroll-padding-top: 75px;   
         }
 
-        /* 基礎設定 */
         * { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #ffffff;
@@ -29,17 +26,16 @@
             overflow-x: hidden; 
             background-color: #01040a; 
         }
+
         a {
             text-decoration: none;
             color: inherit;
         }
 
-        /* 多國語言切換的 CSS 邏輯 */
         .lang-en-txt { display: none; }
         body.english-mode .lang-en-txt { display: inline; }
         body.english-mode .lang-zh-txt { display: none; }
 
-        /* 切換語言按鈕樣式 */
         .lang-btn {
             background-color: transparent;
             color: #ffffff;
@@ -52,13 +48,13 @@
             transition: all 0.3s ease;
             margin-left: 15px; 
         }
+
         .lang-btn:hover {
             background-color: #ffffff;
             color: #01040a; 
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); 
         }
 
-        /* 頂部導覽列 (Navbar) */
         .navbar {
             position: fixed;
             top: 0;
@@ -82,10 +78,12 @@
             letter-spacing: 1px;
             transition: transform 0.3s ease;
         }
+
         .nav-logo:hover {
             transform: scale(1.05);
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
+
         .nav-logo img {
             height: 45px;
             width: auto;
@@ -98,7 +96,6 @@
             gap: 30px;
         }
 
-        /* --- 導覽列連結 (基礎設定) --- */
         .nav-links a {
             position: relative;
             display: inline-flex;
@@ -111,7 +108,6 @@
             z-index: 1;
         }
 
-        /* --- 魔法書籤 2.0 --- */
         .nav-links a::before {
             content: '';
             position: absolute;
@@ -125,19 +121,21 @@
             box-shadow: 0 5px 15px rgba(102, 252, 241, 0);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
         .nav-links a:hover::before {
             height: calc(100% + 20px); 
             box-shadow: 0 10px 20px rgba(0, 168, 232, 0.4); 
         }
+
         .nav-links a:hover {
             color: #01040a; 
             text-shadow: none;
         }
 
-        /* === 招募按鈕樣式 (極致純白互動版) === */
         .nav-links a.nav-cta::before {
             display: none; 
         }
+
         .nav-links a.nav-cta {
             background-color: rgba(255, 255, 255, 0.1); 
             color: #ffffff !important; 
@@ -147,6 +145,7 @@
             margin-left: 10px; 
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; 
         }
+
         .nav-links a.nav-cta:hover {
             background-color: #ffffff; 
             color: #01040a !important; 
@@ -155,7 +154,6 @@
             text-shadow: none;
         }
 
-        /* 姐姐的魔法：漢堡選單按鈕 */
         .menu-toggle {
             display: none;
             color: white;
@@ -164,11 +162,11 @@
             z-index: 1001;
             transition: transform 0.3s ease;
         }
+
         .menu-toggle.active {
             transform: rotate(90deg);
         }
         
-        /* === 影片背景 === */
         .fixed-bg {
             position: absolute;
             top: 0;
@@ -179,7 +177,6 @@
             overflow: hidden;
         }
 
-        /* 終極遮羞布 */
         .video-curtain {
             position: absolute;
             top: 0;
@@ -212,10 +209,9 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(to bottom, rgba(5, 19, 41, 0.4) 0%, rgba(1, 4, 10, 0.8) 100%);
-            z-index: 2; /* 確保疊在影片上 */
+            z-index: 2; 
         }
 
-        /* --- 主視覺橫幅 (Hero Section) --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -228,215 +224,6 @@
             z-index: 1; 
         }
 
-        /* --- 左側半圓形 HUD 容器 --- */
-        .arc-container {
-            position: absolute;
-            left: 0; 
-            top: 50%;
-            transform-origin: left center;
-            transform: translateY(-50%) scale(1); 
-            width: 300px;
-            height: 500px;
-            z-index: 100; 
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-        }
-
-        .arc-container:hover, .arc-container.locked {
-            transform: translateY(-50%) scale(1.4); 
-        }
-
-        .arc-line {
-            position: absolute;
-            left: -150px; 
-            top: 0;
-            width: 300px;
-            height: 500px;
-            border-radius: 50%;
-            border-right: 2px solid rgba(102, 252, 241, 0.4); 
-            background: transparent;
-            transition: all 0.5s ease;
-            z-index: 1;
-        }
-
-        .arc-container:hover .arc-line, .arc-container.locked .arc-line {
-            border-right: 4px solid rgba(102, 252, 241, 0.8);
-            box-shadow: 10px 0 30px rgba(102, 252, 241, 0.3);
-            background: radial-gradient(circle at left, rgba(10, 25, 47, 0.9) 0%, rgba(10, 25, 47, 0.4) 60%, transparent 80%);
-            backdrop-filter: blur(3px); 
-        }
-
-        .arc-item {
-            position: absolute;
-            left: 0; 
-            top: 50%;
-            transform: translateY(-50%) rotate(var(--angle)) translateX(140px) rotate(calc(var(--angle) * -1));
-            
-            background-color: rgba(10, 25, 47, 0.8);
-            border: 1px solid rgba(102, 252, 241, 0.5);
-            border-left: 4px solid rgba(102, 252, 241, 0.8); 
-            border-radius: 6px; 
-            
-            color: #ffffff;
-            padding: 10px 22px; 
-            font-size: 1rem; 
-            font-weight: bold;
-            letter-spacing: 2px; 
-            white-space: nowrap;
-            z-index: 2;
-            transition: all 0.3s ease; 
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .arc-item:hover, .arc-item.active-lock {
-            background-color: #ffffff; 
-            color: #01040a; 
-            border-color: rgba(102, 252, 241, 0.8);
-            box-shadow: 0 0 20px rgba(102, 252, 241, 0.8);
-            transform: translateY(-50%) rotate(var(--angle)) translateX(155px) rotate(calc(var(--angle) * -1)) scale(1.05);
-        }
-
-        /* 姐姐追加：手機版專屬 3D 按鈕 */
-        .mobile-holo-btn {
-            display: none;
-            background: rgba(102, 252, 241, 0.15);
-            border: 1px solid #66fcf1;
-            color: #66fcf1;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            margin-top: 15px;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-        .mobile-holo-btn:active {
-            background: #66fcf1;
-            color: #01040a;
-        }
-
-        /* === 姐姐特製：主頁暗屏鎖定遮罩 === */
-        .screen-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: rgba(1, 4, 10, 0.85); 
-            backdrop-filter: blur(5px); 
-            z-index: 1500; 
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.5s ease;
-        }
-        .screen-overlay.active {
-            opacity: 1;
-            pointer-events: auto; 
-        }
-
-        /* === 全息 3D 面板 === */
-        .holo-panel {
-            position: fixed;
-            left: 280px; 
-            top: 50%;
-            transform: translateY(-50%) scale(0.9);
-            width: 320px;
-            height: 320px;
-            background: rgba(10, 25, 47, 0.9);
-            border: 2px solid rgba(102, 252, 241, 0.5);
-            border-radius: 12px;
-            opacity: 0;
-            pointer-events: none; 
-            box-shadow: none; 
-            
-            transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            
-            z-index: 1501; 
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        model-viewer {
-            width: 100%;
-            height: 100%;
-            background-color: transparent;
-            --poster-color: transparent;
-        }
-
-        .holo-panel.preview-mode {
-            opacity: 1;
-            transform: translateY(-50%) scale(1);
-        }
-
-        .holo-panel.center-mode {
-            left: 50%; 
-            top: 50%;
-            width: 65vw; 
-            max-width: 900px;
-            height: 65vh;
-            
-            pointer-events: auto; 
-            border-radius: 20px;
-            border-color: #ffffff;
-            box-shadow: 0 0 50px rgba(102, 252, 241, 0.6);
-            
-            animation: holoPopUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        @keyframes holoPopUp {
-            0% { transform: translate(-50%, -50%) scale(0.4); opacity: 0; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
-
-        .close-holo-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        .holo-panel.center-mode .close-holo-btn {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .close-holo-btn:hover {
-            background: #ff4757;
-            border-color: #ff4757;
-            transform: rotate(90deg);
-        }
-
-        .holo-hint {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            background: rgba(102, 252, 241, 0.2);
-            color: #66fcf1;
-            font-size: 0.85rem;
-            padding: 10px 0;
-            transition: all 0.3s ease;
-        }
-        .holo-panel.center-mode .holo-hint {
-            background: #66fcf1;
-            color: #01040a;
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-        /* --- 中間 Logo 區域 --- */
         .hero-content {
             position: relative;
             display: flex;
@@ -451,6 +238,7 @@
             animation: floatLogo 3s ease-in-out infinite; 
             margin-bottom: 0; 
         }
+
         .hero-logo img {
             height: 120px; 
             width: auto;
@@ -470,35 +258,39 @@
             letter-spacing: 2px;
             margin-bottom: 15px;
         }
+
         .hero p {
             font-size: 1.2rem;
             color: #8892b0;
             max-width: 600px;
             margin-bottom: 30px;
         }
+
         .hero-actions {
             display: flex;
             gap: 15px;
-            flex-direction: column;
+            flex-direction: row; 
             align-items: center;
+            justify-content: center;
         }
+
         .btn-primary {
             background-color: transparent;
             color: #ffffff;
             border: 1px solid #ffffff;
             padding: 12px 30px;
             font-size: 1rem;
-            border-radius: 5px;
+            border-radius: 30px;
             transition: all 0.3s ease;
             letter-spacing: 1px;
             cursor: pointer;
         }
+
         .btn-primary:hover {
             background-color: rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
 
-        /* === 內容區塊外掛層 === */
         .content-wrapper {
             position: relative;
             z-index: 5;
@@ -518,6 +310,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .section-title::after {
             content: '';
             display: block;
@@ -534,6 +327,7 @@
             max-width: 1100px;
             margin: 0 auto;
         }
+
         .news-card {
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -544,23 +338,27 @@
             flex-direction: column;
             backdrop-filter: blur(5px);
         }
+
         .news-card:hover {
             transform: translateY(-10px);
             border-color: #66fcf1;
             box-shadow: 0 10px 25px rgb(255, 255, 255);
         }
+
         .news-img {
             width: 100%;
             height: 180px;
             object-fit: cover;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .news-content {
             padding: 25px;
             display: flex;
             flex-direction: column;
             flex: 1;
         }
+
         .news-tag {
             font-size: 0.75rem;
             color: #66fcf1;
@@ -569,6 +367,7 @@
             margin-bottom: 10px;
             font-weight: bold;
         }
+
         .news-title {
             font-size: 1.15rem;
             font-weight: bold;
@@ -576,6 +375,7 @@
             line-height: 1.4;
             color: #ffffff;
         }
+
         .news-desc {
             font-size: 0.9rem;
             color: #8892b0;
@@ -583,6 +383,7 @@
             margin-bottom: 20px;
             flex: 1; 
         }
+
         .news-action {
             font-size: 0.9rem;
             color: #ffffff;
@@ -593,6 +394,7 @@
             gap: 8px;
             transition: color 0.3s ease;
         }
+
         .news-card:hover .news-action {
             color: #66fcf1;
         }
@@ -606,8 +408,9 @@
             justify-content: center;
             align-items: center;
             overflow: hidden; 
-            touch-action: pan-y; /* 姐姐魔法：允許手機上下捲動網頁，但保留左右手勢給相簿 */
+            touch-action: pan-y;
         }
+
         .carousel-item {
             position: absolute;
             width: 60%;
@@ -619,6 +422,7 @@
             z-index: 1;
             cursor: pointer; 
         }
+
         .carousel-item img {
             width: 100%;
             height: 100%;
@@ -626,6 +430,7 @@
             border-radius: 15px;
             border: 2px solid rgba(255, 255, 255, 0.2); 
         }
+
         .carousel-dots {
             position: absolute;
             bottom: 20px; 
@@ -637,6 +442,7 @@
             flex-wrap: wrap; 
             justify-content: center;
         }
+
         .dot {
             width: 12px; 
             height: 3px;
@@ -645,9 +451,11 @@
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
         .dot:hover {
             background-color: rgba(102, 252, 241, 0.6); 
         }
+
         .dot.active {
             width: 28px; 
             background-color: #66fcf1;
@@ -663,11 +471,13 @@
             box-shadow: 0 15px 35px rgb(0, 149, 255);
             background-color: #fefefe;
         }
+
         .video-container {
             position: relative;
             padding-bottom: 56.25%; 
             height: 0;
         }
+
         .video-container iframe {
             position: absolute;
             top: 0;
@@ -686,12 +496,14 @@
             max-width: 1000px; 
             margin: 0 auto;
         }
+
         .sponsor-grid {
             display: flex;
             flex-wrap: wrap; 
             justify-content: center; 
             gap: 20px 25px; 
         }
+
         .sponsor-item {
             flex: 0 1 120px; 
             display: flex;
@@ -699,9 +511,11 @@
             align-items: center;
             transition: all 0.3s ease;
         }
+
         .sponsor-item:hover {
             transform: scale(1.08);
         }
+
         .sponsor-item img {
             max-width: 100%;
             height: auto;
@@ -711,6 +525,7 @@
             opacity: 0.65;
             transition: all 0.3s ease;
         }
+
         .sponsor-item:hover img {
             filter: grayscale(0%) brightness(100%);
             opacity: 1;
@@ -722,15 +537,18 @@
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .footer-social {
             margin-bottom: 20px;
         }
+
         .footer-social a {
             color: #8892b0;
             font-size: 1.5rem;
             margin: 0 10px;
             transition: color 0.3s ease;
         }
+
         .footer-social a:hover {
             color: #ffffff;
         }
@@ -744,6 +562,7 @@
             flex-direction: column;
             gap: 8px;
         }
+
         .footer-info p {
             display: flex;
             align-items: center;
@@ -751,11 +570,11 @@
             gap: 10px;
             transition: color 0.3s ease;
         }
+
         .footer-info p:hover {
             color: #ffffff;
         }
 
-        /* === 姐姐的極致龜毛客製化：還原官方漸層圖標 === */
         .footer-info i.fa-location-dot {
             background: linear-gradient(135deg, #ea4335 10%, #4285f4 45%, #34a853 80%, #fbbc05 100%);
             -webkit-background-clip: text;
@@ -766,6 +585,7 @@
             font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
+
         .footer-info i.fa-envelope {
             background: linear-gradient(115deg, #ea4335 30%, #fbbc05 55%, #34a853 80%, #4285f4 100%);
             -webkit-background-clip: text;
@@ -776,34 +596,34 @@
             font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
+
         .footer-info p:hover i.fa-location-dot,
         .footer-info p:hover i.fa-envelope {
             transform: scale(1.15) rotate(-5deg);
         }
+
         .footer-info a {
             color: inherit;
             transition: color 0.3s ease;
         }
+
         .footer-info a:hover {
             color: #ffffff;
         }
+
         .footer-text {
             color: #8892b0;
             font-size: 0.85rem;
         }
 
-        /* ========================================================
-           姐姐的終極手機版防護罩 (Media Queries) 
-           ======================================================== */
         @media (max-width: 768px) {
             .navbar { padding: 15px 20px; }
-            .menu-toggle { display: block; } /* 顯示漢堡按鈕 */
+            .menu-toggle { display: block; } 
             
-            /* 側邊滑動選單 */
             .nav-links { 
                 position: fixed;
                 top: 75px; 
-                right: -100%; /* 預設藏在右邊 */
+                right: -100%; 
                 width: 250px;
                 height: calc(100vh - 75px);
                 background-color: rgba(10, 25, 47, 0.98);
@@ -815,19 +635,24 @@
                 border-left: 1px solid rgba(102, 252, 241, 0.3);
                 box-shadow: -5px 0 20px rgba(0,0,0,0.5);
             }
+
             .nav-links.active {
                 right: 0;
             }
+
             .nav-links a {
                 width: 100%;
                 padding: 15px 0;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             }
-            .nav-links a::before { display: none; } /* 手機版不玩魔法書籤 */
+
+            .nav-links a::before { display: none; } 
+
             .nav-links a.nav-cta {
                 margin: 20px 0 0 0;
                 width: 80%;
             }
+
             .lang-btn {
                 margin: 20px 0 0 0;
                 width: 80%;
@@ -837,23 +662,21 @@
             .hero h1 { font-size: 2.2rem; }
             .hero p { font-size: 1rem; }
             
-            .arc-container { display: none; } /* 隱藏左側弧形 */
-            .mobile-holo-btn { display: inline-block; } /* 顯示手機版專屬 3D 按鈕 */
+            .hero-actions { flex-direction: column; }
 
             .section { padding: 50px 20px; }
             .carousel-container { height: 380px; }
             .carousel-item { height: 280px; width: 75%; }
             .sponsor-item { flex: 0 1 90px; } 
             .sponsor-item img { max-height: 26px; }
-            .holo-panel.center-mode { width: 95vw; height: 60vh; left: 50%; }
         }
         
-        /* === 姐姐的終極物理性超度魔法：抹殺所有不明閃爍游標 === */
         h1, .hero h1 {
             border-right: none !important; 
             caret-color: transparent !important; 
             outline: none !important; 
         }
+
         h1::after, h1::before, .hero h1::after {
             display: none !important; 
             content: none !important;
@@ -868,7 +691,6 @@
             <img src="https://raw.githubusercontent.com/SnowBearTTS/NRT/main/images/White%20ROV.png" alt="Logo">
             <span>NKUST ROV TEAM</span>
         </a>
-        <!-- 姐姐追加：漢堡選單按鈕 -->
         <i class="fa-solid fa-bars menu-toggle" id="menuToggle"></i>
         
         <div class="nav-links" id="navLinks">
@@ -910,25 +732,6 @@
     </div>
 
     <header class="hero">
-        <!-- 左側半圓形 HUD 容器 (電腦版) -->
-        <div class="arc-container" id="arcContainer">
-            <div class="arc-line"></div>
-            
-            <div class="arc-item holo-trigger" style="--angle: -50deg;" data-name="2026 後勁">
-                <span class="lang-zh-txt">2026 後勁</span>
-                <span class="lang-en-txt">2026 Houjing</span>
-            </div>
-            
-            <div class="arc-item holo-trigger" style="--angle: 0deg;" data-name="2026 浮標">
-                <span class="lang-zh-txt">2026 浮標</span>
-                <span class="lang-en-txt">2026 Float</span>
-            </div>
-            
-            <div class="arc-item holo-trigger" style="--angle: 50deg;" data-name="ZZZ">
-                <span class="lang-zh-txt">ZZZ</span>
-                <span class="lang-en-txt">ZZZ</span>
-            </div>
-        </div>
 
         <div class="hero-content">
             <div class="hero-logo">
@@ -947,28 +750,6 @@
                 <span class="lang-zh-txt">探索更多</span>
                 <span class="lang-en-txt">Explore More</span>
             </a>
-            <!-- 姐姐追加：手機版專屬的 3D 模型呼叫按鈕，一樣掛上 holo-trigger 讓他受魔法控制 -->
-            <button class="mobile-holo-btn holo-trigger" data-name="手機預覽">
-                <i class="fa-solid fa-cube"></i> 
-                <span class="lang-zh-txt">預覽 3D 模型</span>
-                <span class="lang-en-txt">View 3D Model</span>
-            </button>
-        </div>
-
-        <div class="screen-overlay" id="screenOverlay"></div>
-        <div class="holo-panel" id="holoPanel">
-            <button class="close-holo-btn" id="closeHoloBtn"><i class="fa-solid fa-xmark"></i></button>
-            
-            <model-viewer id="rovModel" 
-                src="https://raw.githubusercontent.com/SnowBearTTS/NRT/main/images/3D%20printrttest.glb" 
-                alt="ROV 3D Model" 
-                auto-rotate 
-                rotation-per-second="30deg"
-                camera-orbit="0deg 75deg 150%" 
-                max-camera-orbit="auto auto 300%"
-                min-camera-orbit="auto auto 20%">
-            </model-viewer>
-            <div class="holo-hint" id="holoHint">觸控或使用滑鼠旋轉</div>
         </div>
     </header>
 
@@ -1044,30 +825,25 @@
             <div class="carousel-container" id="carouselContainer">
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK20.jpg?raw=true" alt="活動照片 20"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK22.jpg?raw=true" alt="活動照片 22"></div>
-
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK1.JPG?raw=true" alt="活動照片 1"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK2.jpeg?raw=true" alt="活動照片 2"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK3.jpeg?raw=true" alt="活動照片 3"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK4.jpg?raw=true" alt="活動照片 4"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK5.jpg?raw=true" alt="活動照片 5"></div>
-
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK6.jpg?raw=true" alt="活動照片 6"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK7.jpg?raw=true" alt="活動照片 7"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK8.jpg?raw=true" alt="活動照片 8"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK9.jpg?raw=true" alt="活動照片 9"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK10.jpg?raw=true" alt="活動照片 10"></div>
-
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK11.jpg?raw=true" alt="活動照片 11"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK12.jpg?raw=true" alt="活動照片 12"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK13.jpg?raw=true" alt="活動照片 13"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK14.JPG?raw=true" alt="活動照片 14"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK15.JPG?raw=true" alt="活動照片 15"></div>
-
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK16.JPG?raw=true" alt="活動照片 16"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK17.JPG?raw=true" alt="活動照片 17"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK18.JPG?raw=true" alt="活動照片 18"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK19.JPG?raw=true" alt="活動照片 19"></div>
-
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK21.jpg?raw=true" alt="活動照片 21"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK22.jpg?raw=true" alt="活動照片 22"></div>
                 <div class="carousel-item"><img src="https://github.com/SnowBearTTS/NRT/blob/main/images/images/TK23.jpg?raw=true" alt="活動照片 23"></div>
@@ -1145,7 +921,6 @@
     </div>
 
     <script>
-        // --- 姐姐魔法：手機漢堡選單切換 ---
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
         
@@ -1153,10 +928,9 @@
             menuToggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
                 menuToggle.classList.toggle('fa-bars');
-                menuToggle.classList.toggle('fa-xmark'); // 切換圖示
+                menuToggle.classList.toggle('fa-xmark');
                 menuToggle.classList.toggle('active');
             });
-            // 點擊連結後自動收合選單
             navLinks.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
@@ -1167,7 +941,6 @@
             });
         }
 
-        // --- 下方影片滾動自動播放 ---
         const videoSection = document.getElementById('video');
         const rovVideo = document.getElementById('rovVideo');
 
@@ -1185,7 +958,6 @@
             videoObserver.observe(videoSection);
         }
 
-        // --- 照片輪播 (含姐姐加持的手機滑動支援) ---
         const items = document.querySelectorAll('.carousel-item');
         const container = document.getElementById('carouselContainer');
         let currentIndex = 0;
@@ -1257,31 +1029,29 @@
         updateCarousel();
         resetAutoplay();
         
-        // === 手機滑動 (Swipe) 事件監聽 ===
         let touchStartX = 0;
         let touchEndX = 0;
         
         container.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
-            clearInterval(autoplayInterval); // 滑動時暫停自動播放
+            clearInterval(autoplayInterval); 
         }, {passive: true});
         
         container.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
-            resetAutoplay(); // 恢復自動播放
+            resetAutoplay(); 
         }, {passive: true});
         
         function handleSwipe() {
-            const swipeThreshold = 50; // 判定滑動的最小距離
+            const swipeThreshold = 50; 
             if (touchStartX - touchEndX > swipeThreshold) {
-                nextSlide(); // 向左滑，下一張
+                nextSlide(); 
             } else if (touchEndX - touchStartX > swipeThreshold) {
-                prevSlide(); // 向右滑，上一張
+                prevSlide(); 
             }
         }
 
-        // --- 語言切換 ---
         function toggleLanguage() {
             document.body.classList.toggle('english-mode');
 
@@ -1293,86 +1063,6 @@
             }
         }
 
-        // === 姐姐的終極 3D 面板鎖定與雙按鈕聯動魔法 ===
-        const holoTriggers = document.querySelectorAll('.holo-trigger');
-        const holoPanel = document.getElementById('holoPanel');
-        const rovModelElement = document.getElementById('rovModel'); 
-        const holoHint = document.getElementById('holoHint');
-        const arcContainer = document.getElementById('arcContainer');
-        const screenOverlay = document.getElementById('screenOverlay');
-        const closeHoloBtn = document.getElementById('closeHoloBtn');
-
-        let isHoloLocked = false;
-
-        if(holoTriggers.length > 0 && holoPanel) {
-            
-            holoTriggers.forEach(btn => {
-                // 電腦版 hover 預覽
-                btn.addEventListener('mouseenter', function() {
-                    // 為了避免手機版點擊時誤觸 hover，加個判斷
-                    if (!isHoloLocked && window.innerWidth > 768) holoPanel.classList.add('preview-mode');
-                });
-                btn.addEventListener('mouseleave', function() {
-                    if (!isHoloLocked && window.innerWidth > 768) holoPanel.classList.remove('preview-mode');
-                });
-
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault(); 
-                    if (isHoloLocked) return; 
-
-                    isHoloLocked = true;
-                    document.body.style.overflow = 'hidden'; 
-                    
-                    if (arcContainer) arcContainer.classList.add('locked'); 
-                    btn.classList.add('active-lock'); 
-                    
-                    holoPanel.classList.remove('preview-mode'); 
-                    holoPanel.classList.add('center-mode'); 
-                    screenOverlay.classList.add('active'); 
-
-                    rovModelElement.setAttribute('camera-controls', 'true');
-                    
-                    // 動態抓取按鈕上的 data-name，顯示在底下的提示文字裡
-                    const btnName = btn.getAttribute('data-name') || '模組';
-                    holoHint.innerText = `✅ 【${btnName}】已載入 (可拖曳/雙指縮放)`;
-                });
-            });
-
-            function closeHoloModal() {
-                isHoloLocked = false;
-                document.body.style.overflow = ''; 
-                
-                if (arcContainer) arcContainer.classList.remove('locked');
-                
-                holoTriggers.forEach(b => b.classList.remove('active-lock'));
-                
-                holoPanel.classList.remove('center-mode');
-                screenOverlay.classList.remove('active');
-
-                // 復位
-                rovModelElement.setAttribute('camera-orbit', '0deg 75deg 150%');
-                rovModelElement.setAttribute('camera-target', 'auto auto auto');
-                rovModelElement.setAttribute('field-of-view', 'auto'); 
-                
-                rovModelElement.cameraOrbit = '0deg 75deg 150%';
-                rovModelElement.fieldOfView = 'auto';
-                rovModelElement.removeAttribute('camera-controls');
-                
-                if (typeof rovModelElement.jumpCameraToGoal === 'function') {
-                    rovModelElement.jumpCameraToGoal();
-                }
-                if (typeof rovModelElement.resetTurntableRotation === 'function') {
-                    rovModelElement.resetTurntableRotation();
-                }
-
-                holoHint.innerText = "觸控或使用滑鼠旋轉";
-            }
-
-            closeHoloBtn.addEventListener('click', closeHoloModal);
-            screenOverlay.addEventListener('click', closeHoloModal); 
-        }
-
-        // === 全新 Vimeo API 監控魔法 ===
         const iframe = document.getElementById('vimeo-bg-player');
         
         if (iframe) {
