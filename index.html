@@ -887,9 +887,14 @@
         <div class="arc-container" id="arcContainer">
             <div class="arc-line"></div>
             
-            <div class="arc-item holo-trigger" style="--angle: 0deg;" data-name="2026 後勁">
+            <div class="arc-item holo-trigger" style="--angle: -20deg;" data-name="2026 後勁" data-model="https://raw.githubusercontent.com/SnowBearTTS/NRT/main/images/%E7%B5%84%E5%90%880827.glb">
                 <span class="lang-zh-txt">2026 後勁</span>
                 <span class="lang-en-txt">2026 Houjing</span>
+            </div>
+
+            <div class="arc-item holo-trigger" style="--angle: 20deg;" data-name="2026 Float" data-model="https://raw.githubusercontent.com/SnowBearTTS/NRT/main/images/%E6%B5%AE%E6%A8%992.glb">
+                <span class="lang-zh-txt">2026 浮標</span>
+                <span class="lang-en-txt">2026 Float</span>
             </div>
         </div>
 
@@ -900,7 +905,7 @@
         </div>
 
         <h1>NKUST ROV TEAM </h1>
-        <p>     
+        <p>    
             <span class="lang-zh-txt">National Kaohsiung University of Science and Technology<br>致力於水下載具的創新研發與系統整合</span>
             <span class="lang-en-txt">National Kaohsiung University of Science and Technology<br>Dedicated to the innovative R&D and system integration of underwater vehicles</span>
         </p>
@@ -910,7 +915,7 @@
                 <span class="lang-zh-txt">探索更多</span>
                 <span class="lang-en-txt">Explore More</span>
             </a>
-            <button class="mobile-holo-btn holo-trigger" data-name="手機預覽">
+            <button class="mobile-holo-btn holo-trigger" data-name="2026 後勁" data-model="https://raw.githubusercontent.com/SnowBearTTS/NRT/main/images/%E7%B5%84%E5%90%880827.glb">
                 <i class="fa-solid fa-cube"></i> 
                 <span class="lang-zh-txt">預覽 3D 模型</span>
                 <span class="lang-en-txt">View 3D Model</span>
@@ -1263,8 +1268,15 @@
             
             holoTriggers.forEach(btn => {
                 btn.addEventListener('mouseenter', function() {
-                    if (!isHoloLocked && window.innerWidth > 768) holoPanel.classList.add('preview-mode');
+                    if (!isHoloLocked && window.innerWidth > 768) {
+                        const modelSrc = btn.getAttribute('data-model');
+                        if (modelSrc) {
+                            rovModelElement.setAttribute('src', modelSrc);
+                        }
+                        holoPanel.classList.add('preview-mode');
+                    }
                 });
+                
                 btn.addEventListener('mouseleave', function() {
                     if (!isHoloLocked && window.innerWidth > 768) holoPanel.classList.remove('preview-mode');
                 });
@@ -1282,6 +1294,11 @@
                     holoPanel.classList.remove('preview-mode'); 
                     holoPanel.classList.add('center-mode'); 
                     screenOverlay.classList.add('active'); 
+
+                    const modelSrc = btn.getAttribute('data-model');
+                    if (modelSrc) {
+                        rovModelElement.setAttribute('src', modelSrc);
+                    }
 
                     rovModelElement.setAttribute('camera-controls', 'true');
                     
